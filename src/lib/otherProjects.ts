@@ -19,11 +19,11 @@ export const otherProjects: OtherProject[] = [
     summary:
       "Многопользовательская аркада про корабли внутри Telegram: бой на Canvas, мета-слой со скинами и кейсами, кошелёк TON и серверный мультиплеер.",
     points: [
-      "Клиент на React 18 и строгом TypeScript: один reducer, императивный canvas-движок боя и i18n на два языка.",
+      "Клиент на React 18: один reducer, императивный canvas-движок боя и i18n на два языка.",
       "Серверная авторитетность: общий пакет симуляции для сервера, офлайна и предсказания, фиксированный тик 20 Гц, Socket.IO.",
       "Мета-прогрессия: 74 скина, кейсы, сезонные таблицы и синхронизация аккаунта через TON Connect.",
     ],
-    tech: ["React 18", "TypeScript", "Vite", "Canvas", "NestJS", "Socket.IO", "TON Connect"],
+    tech: ["React 18", "Vite", "Canvas", "NestJS", "Socket.IO", "TON Connect"],
     accent: "#7C5CFF",
   },
   {

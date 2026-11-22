@@ -11,7 +11,7 @@ React и Electron.
 
 | Слой | Технологии |
 | --- | --- |
-| Frontend | Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS 4 |
+| Frontend | Next.js 16 (App Router), React 19, Tailwind CSS 4 |
 | Анимации | Framer Motion, Lenis (smooth scroll), Canvas 2D |
 | Backend (опционально) | Go 1.24+, стандартная библиотека `net/http`, `go:embed` |
 | Хостинг | Netlify (Next.js Runtime), Go API — на любом Go-хостинге |
@@ -144,7 +144,7 @@ Unity-проекты из GitHub-аккаунта `GhostAndrey`:
 
 Раздел «Остальные проекты» (`src/lib/otherProjects.ts`):
 
-- **ASTRION** — Telegram Mini App: React, TypeScript, Canvas, NestJS, Socket.IO, TON Connect.
+- **ASTRION** — Telegram Mini App: React, Canvas, NestJS, Socket.IO, TON Connect.
 - **Subscription Firewall** — Go-микросервис для поиска подписок и виртуальных карт.
 - **GoDojo** — офлайн-тренажёр по Go: templ, chi, SQLite, песочница компиляции.
 - **Avito Parser** — Electron-приложение с Puppeteer Stealth и прокси.

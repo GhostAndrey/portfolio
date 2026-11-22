@@ -2,7 +2,7 @@ const items = [
   "Unity",
   "C#",
   "Go",
-  "TypeScript",
+  "Next.js",
   "Game feel",
   "Systems design",
   "World building",
