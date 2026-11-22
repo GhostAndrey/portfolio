@@ -29,9 +29,6 @@ export function Footer() {
               <Link href="/#about" className="footer__link">
                 Обо мне
               </Link>
-              <Link href="/#contact" className="footer__link">
-                Контакты
-              </Link>
             </div>
             <div className="footer__col">
               <span className="footer__col-title">Ссылки</span>

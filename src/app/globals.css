@@ -1,4 +1,4 @@
-@import "tailwindcss";
+﻿@import "tailwindcss";
 
 @theme inline {
   --font-display: "Space Grotesk Variable", "Space Grotesk", system-ui, sans-serif;
@@ -402,28 +402,6 @@ html.lenis body {
   display: flex;
   align-items: center;
   gap: 18px;
-}
-.nav__cta {
-  min-height: 42px;
-  padding-inline: 18px;
-}
-.nav__status {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-family: var(--font-mono);
-  font-size: 0.6rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-.nav__status i {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--lime);
-  box-shadow: 0 0 12px var(--lime);
-  animation: pulse 2.4s ease-in-out infinite;
 }
 @keyframes pulse {
   0%, 100% { opacity: 1; transform: scale(1); }
@@ -1355,110 +1333,6 @@ html.lenis body {
   border-color: rgba(8, 8, 11, 0.25);
 }
 
-/* ---------- Contact ---------- */
-.contact {
-  border-top: 1px solid var(--line);
-  padding-top: clamp(40px, 6vw, 80px);
-}
-.contact__grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-  gap: clamp(36px, 6vw, 100px);
-  align-items: start;
-}
-.contact__title {
-  font-family: var(--font-display);
-  font-size: clamp(2.8rem, 7.2vw, 7.2rem);
-  font-weight: 600;
-  letter-spacing: -0.06em;
-  line-height: 0.88;
-  text-transform: uppercase;
-}
-.contact__title em {
-  font-style: normal;
-  color: var(--lime);
-}
-.contact__title .stroke {
-  color: transparent;
-  -webkit-text-stroke: 1.2px rgba(244, 240, 230, 0.42);
-}
-.contact__note {
-  color: var(--muted);
-  max-width: 42ch;
-  margin-top: 26px;
-  line-height: 1.7;
-  font-size: 0.95rem;
-}
-.contact__links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 28px;
-}
-.contact__form {
-  display: flex;
-  flex-direction: column;
-  gap: 22px;
-  padding-top: 6px;
-}
-.field {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-.field label {
-  font-family: var(--font-mono);
-  font-size: 0.58rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--muted-2);
-}
-.field input,
-.field textarea {
-  width: 100%;
-  background: transparent;
-  border: 0;
-  border-bottom: 1px solid var(--line);
-  border-radius: 0;
-  padding: 10px 0 14px;
-  font-size: 1rem;
-  color: var(--bone);
-  outline: none;
-  transition: border-color 0.4s var(--ease);
-  resize: none;
-}
-.field input::placeholder,
-.field textarea::placeholder {
-  color: #56544f;
-}
-.field input:focus,
-.field textarea:focus {
-  border-color: var(--lime);
-}
-.field textarea {
-  min-height: 110px;
-}
-.contact__form-foot {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 18px;
-  flex-wrap: wrap;
-  padding-top: 6px;
-}
-.contact__status {
-  font-family: var(--font-mono);
-  font-size: 0.6rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--muted-2);
-}
-.contact__status.is-ok {
-  color: var(--lime);
-}
-.contact__status.is-error {
-  color: var(--ember);
-}
 
 /* ---------- Footer ---------- */
 .footer {
@@ -1813,20 +1687,6 @@ html.lenis body {
   flex-wrap: wrap;
   gap: 8px;
 }
-.work-cta {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  flex-wrap: wrap;
-  border-top: 1px solid var(--line);
-  padding-top: 26px;
-}
-.work-cta__text {
-  font-family: var(--font-display);
-  font-size: clamp(1.3rem, 2vw, 1.8rem);
-  letter-spacing: -0.03em;
-}
 .next-work {
   display: block;
   border-top: 1px solid var(--line);
@@ -1934,8 +1794,7 @@ html.lenis body {
 }
 
 @media (max-width: 1024px) {
-  .nav__links,
-  .nav__status {
+  .nav__links {
     display: none;
   }
   .nav__burger {
@@ -2048,13 +1907,6 @@ html.lenis body {
   .process__tags {
     display: none;
   }
-  .contact__grid {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
-  .contact__title {
-    font-size: clamp(2.6rem, 13vw, 4.4rem);
-  }
   .work-hero__title {
     font-size: clamp(2.7rem, 13vw, 5rem);
   }
@@ -2108,12 +1960,6 @@ html.lenis body {
   }
   .preloader__bottom {
     align-items: center;
-  }
-}
-
-@media (max-width: 600px) {
-  .nav__cta {
-    display: none;
   }
 }
 

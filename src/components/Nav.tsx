@@ -4,14 +4,12 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowUpRight } from "./icons";
 
 const links = [
   { label: "Работы", hash: "#work", index: "01" },
   { label: "Остальные", hash: "#more", index: "02" },
   { label: "Подход", hash: "#approach", index: "03" },
   { label: "Обо мне", hash: "#about", index: "04" },
-  { label: "Контакты", hash: "#contact", index: "05" },
 ];
 
 export function Nav() {
@@ -63,16 +61,6 @@ export function Nav() {
           </nav>
 
           <div className="nav__right">
-            <span className="nav__status">
-              <i />
-              Открыт к проектам
-            </span>
-            <Link href={hrefFor("#contact")} className="btn btn--primary nav__cta">
-              <span>Связаться</span>
-              <span className="btn__arrow">
-                <ArrowUpRight size={13} />
-              </span>
-            </Link>
             <button
               type="button"
               className={`nav__burger ${open ? "is-open" : ""}`}

@@ -37,7 +37,7 @@ npm run dev
 
 Откройте <http://localhost:3000>.
 
-Если нужен Go API (проекты + форма обратной связи), запустите его вторым терминалом:
+Если нужен Go API для данных о проектах, запустите его вторым терминалом:
 
 ```powershell
 npm run api
@@ -63,39 +63,28 @@ npm run api:build
 
 ```env
 PORTFOLIO_API_URL=http://localhost:8080
-NEXT_PUBLIC_API_URL=http://localhost:8080
 NEXT_PUBLIC_SITE_URL=http://localhost:3000
 ALLOWED_ORIGINS=http://localhost:3000,http://127.0.0.1:3000
-TELEGRAM_BOT_TOKEN=
-TELEGRAM_CHAT_ID=
-CONTACT_WEBHOOK_URL=
 ```
 
 - `PORTFOLIO_API_URL` — если задан, серверные страницы берут проекты из Go API.
   Если API недоступен, сайт читает `backend/data/projects.json` на этапе сборки.
-- `NEXT_PUBLIC_API_URL` — адрес Go API для формы обратной связи в браузере.
-  На Netlify очистите его: форма пойдёт в собственный маршрут `/api/contact`.
 - `ALLOWED_ORIGINS` — CORS-список для Go API (через запятую).
-- `TELEGRAM_BOT_TOKEN` + `TELEGRAM_CHAT_ID` — доставка сообщений формы в Telegram.
-- `CONTACT_WEBHOOK_URL` — альтернатива Telegram: POST JSON на любой webhook
-  (Make, n8n, Discord и т. п.).
 
 ## Структура
 
 ```
 portfolio/
 ├─ backend/
-│  ├─ main.go              # API, CORS, rate limit, валидация формы
+│  ├─ main.go              # API, CORS, проекты и статистика
 │  ├─ go.mod
 │  └─ data/
-│     ├─ projects.json     # единственный источник данных о проектах
-│     └─ messages.jsonl    # создаётся после первого сообщения
+│     └─ projects.json     # единственный источник данных о проектах
 ├─ src/
 │  ├─ app/
 │  │  ├─ layout.tsx        # шрифты, метаданные, preloader, курсор, навигация
 │  │  ├─ page.tsx          # главная
 │  │  ├─ globals.css       # дизайн-система и все анимации
-│  │  ├─ api/contact/      # маршрут формы для статического хостинга
 │  │  ├─ work/[slug]/      # страница проекта (SSG для всех 13)
 │  │  ├─ opengraph-image.tsx
 │  │  └─ icon.svg
@@ -115,10 +104,6 @@ portfolio/
 | GET | `/api/projects` | все проекты; фильтры `?category=Кооп`, `?featured=true` |
 | GET | `/api/projects/{slug}` | один проект |
 | GET | `/api/stats` | агрегаты: категории, движки, технологии |
-| POST | `/api/contact` | форма: `{ name, email, message, company }` |
-
-Go API сохраняет сообщения в `backend/data/messages.jsonl` (по одному JSON на строку),
-имеет honeypot-поле и лимит 5 отправок за 10 минут с одного IP.
 
 ```powershell
 curl http://localhost:8080/api/health
@@ -159,14 +144,9 @@ Unity-проекты из GitHub-аккаунта `GhostAndrey`:
    - publish directory — `.next`;
    - плагин — `@netlify/plugin-nextjs`.
 4. В **Site configuration → Environment variables** задайте:
-   - `NEXT_PUBLIC_SITE_URL` — домен сайта;
-   - `TELEGRAM_BOT_TOKEN` и `TELEGRAM_CHAT_ID` **или** `CONTACT_WEBHOOK_URL`
-     для формы обратной связи.
+   - `NEXT_PUBLIC_SITE_URL` — домен сайта.
 5. Задеплойте. Go API для сайта не обязателен: данные проектов попадают в сборку
    из `backend/data/projects.json`.
-
-Если форма не настроена, она вернёт ошибку и предложит написать в GitHub —
-сайт при этом продолжает работать.
 
 ## Как редактировать контент
 
@@ -195,5 +175,4 @@ Unity-проекты из GitHub-аккаунта `GhostAndrey`:
 - Сетка проектов с фильтрами и layout-анимациями, tilt-эффект карточек.
 - Отдельные SSG-страницы проектов: метрики, механики, стек, следующий проект.
 - Раздел «Остальные проекты» с описанием стека и задач.
-- Форма обратной связи: Go API локально или `/api/contact` на Netlify.
 - Адаптивность, `prefers-reduced-motion`, focus-состояния, SEO/OG-метаданные.

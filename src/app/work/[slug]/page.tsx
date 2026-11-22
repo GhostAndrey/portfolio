@@ -173,16 +173,6 @@ export default async function ProjectPage({ params }: PageProps) {
               ))}
             </div>
           </section>
-
-          <div className="work-cta">
-            <span className="work-cta__text">Хотите такой же уровень проработки?</span>
-            <Link href="/#contact" className="btn btn--primary">
-              <span>Обсудить проект</span>
-              <span className="btn__arrow">
-                <ArrowUpRight size={13} />
-              </span>
-            </Link>
-          </div>
         </div>
       </div>
 

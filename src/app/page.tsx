@@ -4,7 +4,6 @@ import { About } from "@/components/About";
 import { WorkGrid } from "@/components/WorkGrid";
 import { MoreProjects } from "@/components/MoreProjects";
 import { Process } from "@/components/Process";
-import { Contact } from "@/components/Contact";
 import { getProjects } from "@/lib/projects";
 
 export const revalidate = 60;
@@ -20,7 +19,6 @@ export default async function HomePage() {
       <WorkGrid projects={projects} />
       <MoreProjects />
       <Process />
-      <Contact />
     </>
   );
 }

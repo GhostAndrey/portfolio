@@ -6,12 +6,9 @@ import (
 	"encoding/json"
 	"errors"
 	"log"
-	"net"
 	"net/http"
-	"net/mail"
 	"os"
 	"os/signal"
-	"path/filepath"
 	"sort"
 	"strings"
 	"sync"
@@ -24,10 +21,6 @@ var content embed.FS
 
 const (
 	version       = "1.0.0"
-	maxBodyBytes  = 32 << 10
-	messagesFile  = "data/messages.jsonl"
-	rateWindow    = 10 * time.Minute
-	rateMaxPerIP  = 5
 	defaultOrigin = "http://localhost:3000,http://127.0.0.1:3000"
 )
 
@@ -84,8 +77,6 @@ var (
 	projects   []Project
 	projectsMu sync.RWMutex
 	startedAt  = time.Now()
-	writeMu    sync.Mutex
-	limiter    = newRateLimiter(rateMaxPerIP, rateWindow)
 )
 
 func main() {
@@ -99,7 +90,6 @@ func main() {
 	mux.HandleFunc("GET /api/projects", handleProjects)
 	mux.HandleFunc("GET /api/projects/{slug}", handleProject)
 	mux.HandleFunc("GET /api/stats", handleStats)
-	mux.HandleFunc("POST /api/contact", handleContact)
 
 	handler := recoverer(securityHeaders(cors(logging(mux))))
 
@@ -169,7 +159,6 @@ func handleRoot(w http.ResponseWriter, r *http.Request) {
 			"GET /api/projects?category=&featured=true",
 			"GET /api/projects/{slug}",
 			"GET /api/stats",
-			"POST /api/contact",
 		},
 	})
 }
@@ -257,88 +246,6 @@ func handleStats(w http.ResponseWriter, r *http.Request) {
 	})
 }
 
-func handleContact(w http.ResponseWriter, r *http.Request) {
-	ip := clientIP(r)
-	if !limiter.allow(ip) {
-		writeError(w, http.StatusTooManyRequests, "too many requests, try later")
-		return
-	}
-
-	r.Body = http.MaxBytesReader(w, r.Body, maxBodyBytes)
-	defer r.Body.Close()
-
-	decoder := json.NewDecoder(r.Body)
-	decoder.DisallowUnknownFields()
-
-	var payload ContactRequest
-	if err := decoder.Decode(&payload); err != nil {
-		writeError(w, http.StatusBadRequest, "invalid JSON body")
-		return
-	}
-
-	payload.Name = strings.TrimSpace(payload.Name)
-	payload.Email = strings.TrimSpace(payload.Email)
-	payload.Message = strings.TrimSpace(payload.Message)
-	payload.Company = strings.TrimSpace(payload.Company)
-
-	// Honeypot: bots fill hidden fields. Pretend everything is fine.
-	if payload.Company != "" {
-		writeJSON(w, http.StatusAccepted, map[string]string{"status": "accepted"})
-		return
-	}
-
-	if len([]rune(payload.Name)) < 2 || len([]rune(payload.Name)) > 120 {
-		writeError(w, http.StatusBadRequest, "name must be 2–120 characters")
-		return
-	}
-	if _, err := mail.ParseAddress(payload.Email); err != nil || len(payload.Email) > 200 {
-		writeError(w, http.StatusBadRequest, "valid email is required")
-		return
-	}
-	if len([]rune(payload.Message)) < 10 || len([]rune(payload.Message)) > 4000 {
-		writeError(w, http.StatusBadRequest, "message must be 10–4000 characters")
-		return
-	}
-
-	record := ContactRecord{
-		Name:       payload.Name,
-		Email:      payload.Email,
-		Message:    payload.Message,
-		ReceivedAt: time.Now().UTC(),
-	}
-
-	if err := appendMessage(record); err != nil {
-		log.Printf("save message: %v", err)
-		writeError(w, http.StatusInternalServerError, "could not save message")
-		return
-	}
-
-	log.Printf("contact message from %q <%s>", record.Name, record.Email)
-	writeJSON(w, http.StatusCreated, map[string]string{"status": "created"})
-}
-
-func appendMessage(record ContactRecord) error {
-	writeMu.Lock()
-	defer writeMu.Unlock()
-
-	if err := os.MkdirAll(filepath.Dir(messagesFile), 0o755); err != nil {
-		return err
-	}
-	file, err := os.OpenFile(messagesFile, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0o600)
-	if err != nil {
-		return err
-	}
-	defer file.Close()
-
-	line, err := json.Marshal(record)
-	if err != nil {
-		return err
-	}
-	line = append(line, '\n')
-	_, err = file.Write(line)
-	return err
-}
-
 // ---------- middleware ----------
 
 type statusWriter struct {
@@ -408,50 +315,6 @@ func cors(next http.Handler) http.Handler {
 }
 
 // ---------- helpers ----------
-
-type rateLimiter struct {
-	mu     sync.Mutex
-	hits   map[string][]time.Time
-	max    int
-	window time.Duration
-}
-
-func newRateLimiter(max int, window time.Duration) *rateLimiter {
-	return &rateLimiter{hits: map[string][]time.Time{}, max: max, window: window}
-}
-
-func (l *rateLimiter) allow(key string) bool {
-	l.mu.Lock()
-	defer l.mu.Unlock()
-
-	now := time.Now()
-	cutoff := now.Add(-l.window)
-	kept := l.hits[key][:0]
-	for _, hit := range l.hits[key] {
-		if hit.After(cutoff) {
-			kept = append(kept, hit)
-		}
-	}
-	if len(kept) >= l.max {
-		l.hits[key] = kept
-		return false
-	}
-	l.hits[key] = append(kept, now)
-	return true
-}
-
-func clientIP(r *http.Request) string {
-	if forwarded := r.Header.Get("X-Forwarded-For"); forwarded != "" {
-		if first := strings.TrimSpace(strings.Split(forwarded, ",")[0]); first != "" {
-			return first
-		}
-	}
-	host, _, err := net.SplitHostPort(r.RemoteAddr)
-	if err != nil {
-		return r.RemoteAddr
-	}
-	return host
-}
 
 func getenv(key, fallback string) string {
 	if value := strings.TrimSpace(os.Getenv(key)); value != "" {
