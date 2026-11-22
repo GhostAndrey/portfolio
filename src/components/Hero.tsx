@@ -12,7 +12,7 @@ export function Hero() {
 
       <div className="hero__side" aria-hidden="true">
         <span className="mono hero__side-label">Selected work</span>
-        <span className="hero__side-value">14 игр + 4 проекта</span>
+        <span className="hero__side-value">13 игр + 4 проекта</span>
         <span className="hero__side-dot" />
         <span className="mono hero__side-label">Unity / C#</span>
       </div>
@@ -40,7 +40,7 @@ export function Hero() {
 
         <div className="hero__bottom">
           <p className="hero__lead">
-            <strong>14 игровых проектов</strong> — от кооперативной долины 5×5 км до
+            <strong>13 игровых проектов</strong> — от кооперативной долины 5×5 км до
             хоррора в квартире с Авито. Плюс Go-сервисы, Telegram Mini App и
             инструменты автоматизации.
           </p>

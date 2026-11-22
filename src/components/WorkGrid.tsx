@@ -38,7 +38,7 @@ export function WorkGrid({ projects }: WorkGridProps) {
             </h2>
           </div>
           <p className="section-head__aside">
-            Четырнадцать игр из GitHub: от учебных экспериментов до большого
+            Тринадцать игр из GitHub: от учебных экспериментов до большого
             кооперативного мира. Фильтруйте по жанру и открывайте разбор каждой.
           </p>
           <span className="section-head__count">

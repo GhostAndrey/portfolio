@@ -37,7 +37,7 @@ export default function OpenGraphImage() {
           <div style={{ fontSize: 118, lineHeight: 0.9, letterSpacing: -7, fontWeight: 700 }}>GAMES WITH</div>
           <div style={{ fontSize: 118, lineHeight: 0.9, letterSpacing: -7, fontWeight: 700, color: "#c8ff4d" }}>CHARACTER.</div>
           <div style={{ fontSize: 30, color: "#a3a19a", marginTop: 22 }}>
-            14 Unity projects · Go services · web & automation
+            13 Unity projects · Go services · web & automation
           </div>
         </div>
 

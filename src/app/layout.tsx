@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     template: "%s — Андрей",
   },
   description:
-    "Портфолио Андрея: 14 Unity-игр — от кооперативной долины 5×5 км до камерного хоррора, а также Go-сервисы, Telegram Mini App и инструменты автоматизации.",
+    "Портфолио Андрея: 13 Unity-игр — от кооперативной долины 5×5 км до камерного хоррора, а также Go-сервисы, Telegram Mini App и инструменты автоматизации.",
   keywords: [
     "Unity",
     "C#",
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     siteName: "Андрей — портфолио",
     title: "Андрей — геймдизайнер и Unity-разработчик",
     description:
-      "14 Unity-игр, Go-сервисы, Telegram Mini App и инструменты автоматизации. Минск, геймдизайн.",
+      "13 Unity-игр, Go-сервисы, Telegram Mini App и инструменты автоматизации. Минск, геймдизайн.",
   },
   twitter: {
     card: "summary_large_image",

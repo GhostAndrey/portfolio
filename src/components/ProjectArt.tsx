@@ -721,49 +721,6 @@ function Pong({ id, a, b }: SceneProps) {
   );
 }
 
-function Cube({ id, a, b }: SceneProps) {
-  const cube = (x: number, y: number, size: number, color: string, opacity: number, key: string) => {
-    const s = size;
-    const h = s * 0.5;
-    return (
-      <g key={key} opacity={opacity}>
-        <path d={`M${x} ${y} l${s} -${h} l${s} ${h} l-${s} ${h}Z`} fill={color} fillOpacity="0.18" stroke={color} />
-        <path d={`M${x} ${y} l${s} ${h} v${s} l-${s} -${h}Z`} fill={color} fillOpacity="0.08" stroke={color} strokeOpacity="0.6" />
-        <path d={`M${x + s * 2} ${y} l-${s} ${h} v${s} l${s} -${h}Z`} fill={color} fillOpacity="0.04" stroke={color} strokeOpacity="0.4" />
-      </g>
-    );
-  };
-
-  return (
-    <>
-      <rect width="800" height="600" fill={`url(#${id}-sky)`} />
-      <rect width="800" height="600" fill={`url(#${id}-grid)`} opacity="0.5" />
-
-      <line x1="90" y1="90" x2="400" y2="300" stroke={a} strokeWidth="1.5" strokeDasharray="5 8" opacity="0.8" />
-      <g transform="translate(400 300)">
-        <circle r="70" fill="none" stroke={a} strokeOpacity="0.25" />
-        <circle r="46" fill="none" stroke={a} strokeOpacity="0.4" strokeDasharray="4 8" />
-        <circle r="10" fill={a} />
-      </g>
-
-      {cube(150, 330, 58, a, 0.9, "c1")}
-      {cube(430, 240, 46, b, 0.8, "c2")}
-      {cube(560, 390, 38, a, 0.55, "c3")}
-      {cube(300, 120, 28, b, 0.45, "c4")}
-
-      <g fill={b}>
-        <circle cx="620" cy="160" r="5" />
-        <circle cx="200" cy="200" r="4" />
-        <circle cx="680" cy="480" r="3" />
-      </g>
-
-      <text x="70" y="540" fill="#f4f0e6" opacity="0.25" fontFamily="JetBrains Mono Variable, monospace" fontSize="11" letterSpacing="2">
-        RAYCAST / FOLLOW / DESTROY
-      </text>
-    </>
-  );
-}
-
 function Pacman({ id, a, b }: SceneProps) {
   return (
     <>
@@ -846,8 +803,6 @@ function renderScene(art: string, id: string, a: string, b: string): ReactNode {
       return <Memory {...props} />;
     case "pong":
       return <Pong {...props} />;
-    case "cube":
-      return <Cube {...props} />;
     case "pacman":
       return <Pacman {...props} />;
     default:
