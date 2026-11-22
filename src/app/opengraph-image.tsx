@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
-export const alt = "Портфолио — Unity game developer";
+export const alt = "Андрей — геймдизайнер и Unity-разработчик";
 
 export default function OpenGraphImage() {
   return new ImageResponse(
@@ -29,8 +29,8 @@ export default function OpenGraphImage() {
           }}
         />
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", fontSize: 24, letterSpacing: 4, color: "#a3a19a" }}>
-          <span>PORTFOLIO.</span>
-          <span>GAME & CODE / 2026</span>
+          <span>АНДРЕЙ.</span>
+          <span>GAME DESIGN / 2026</span>
         </div>
 
         <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>

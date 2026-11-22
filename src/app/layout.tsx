@@ -16,37 +16,39 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Портфолио — Unity-разработчик",
-    template: "%s — Портфолио",
+    default: "Андрей — геймдизайнер и Unity-разработчик",
+    template: "%s — Андрей",
   },
   description:
-    "Портфолио разработчика: два Unity-проекта — кооперативная долина 5×5 км и камерный хоррор, а также финтех, edtech и автоматизация на Go, React и Electron.",
+    "Портфолио Андрея: 14 Unity-игр — от кооперативной долины 5×5 км до камерного хоррора, а также Go-сервисы, Telegram Mini App и инструменты автоматизации.",
   keywords: [
     "Unity",
     "C#",
     "game developer",
+    "геймдизайнер",
     "портфолио",
     "геймдизайн",
+    "Андрей",
     "Medieval Coop",
     "The Co-habitant",
     "ASTRION",
     "GoDojo",
     "Subscription Firewall",
   ],
-  authors: [{ name: "Портфолио", url: "https://github.com/GhostAndrey" }],
-  creator: "Портфолио",
+  authors: [{ name: "Андрей", url: "https://github.com/GhostAndrey" }],
+  creator: "Андрей",
   openGraph: {
     type: "website",
     locale: "ru_RU",
     url: siteUrl,
-    siteName: "Портфолио",
-    title: "Портфолио — Unity-разработчик",
+    siteName: "Андрей — портфолио",
+    title: "Андрей — геймдизайнер и Unity-разработчик",
     description:
-      "Два Unity-проекта в разработке, а также Go-сервисы, Telegram Mini App и инструменты автоматизации.",
+      "14 Unity-игр, Go-сервисы, Telegram Mini App и инструменты автоматизации. Минск, геймдизайн.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Портфолио — Unity-разработчик",
+    title: "Андрей — геймдизайнер и Unity-разработчик",
     description:
       "Unity-игры, Go-сервисы и веб-проекты: механики, системы, атмосфера и инженерия.",
   },
@@ -63,11 +65,17 @@ export const viewport: Viewport = {
 const personSchema = {
   "@context": "https://schema.org",
   "@type": "Person",
-  name: "Unity-разработчик",
-  jobTitle: "Unity Game Developer",
+  name: "Андрей",
+  jobTitle: "Game Designer & Unity Developer",
+  description:
+    "20 лет, родился в Узбекистане, учится на геймдизайнера в Минске. Делает игры на Unity, сервисы на Go и веб-проекты на Next.js.",
   url: siteUrl,
+  homeLocation: {
+    "@type": "Place",
+    address: { "@type": "PostalAddress", addressLocality: "Минск", addressCountry: "BY" },
+  },
   sameAs: ["https://github.com/GhostAndrey"],
-  knowsAbout: ["Unity", "C#", "Game Design", "Gameplay Programming", "Go", "React"],
+  knowsAbout: ["Unity", "C#", "Game Design", "Gameplay Programming", "Go", "Next.js", "React"],
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

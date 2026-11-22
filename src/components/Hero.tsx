@@ -20,7 +20,7 @@ export function Hero() {
       <div className="shell hero__inner">
         <div className="hero__eyebrow mono">
           <i />
-          Game developer — Unity / C# — 2026
+          Андрей — геймдизайнер — Unity / C#
         </div>
 
         <h1 className="hero__title" id="hero-title">

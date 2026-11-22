@@ -2,10 +2,11 @@ import { Reveal } from "./Reveal";
 import { CountUp } from "./CountUp";
 
 const facts = [
+  ["Город", "Минск, Беларусь"],
+  ["Учёба", "Геймдизайн"],
   ["Движок", "Unity 2021 — 6.3"],
   ["Язык", "C# / Go"],
   ["Веб", "Next.js / React"],
-  ["Роль", "Gameplay · Systems"],
   ["Формат", "PC · Web · Mobile"],
 ];
 
@@ -44,10 +45,14 @@ export function About() {
           <Reveal className="about__aside" delay={0.12}>
             <div className="about__copy">
               <p>
-                Я Unity-разработчик. Начинал с маленьких лабораторных — Pong,
-                карточки на память, раннер про мышь, — а сейчас строю{" "}
-                <strong>Medieval Coop</strong>: кооперативный мир на 5×5 км с
-                сотнями взаимосвязанных систем.
+                Меня зовут <strong>Андрей</strong>, мне 20 лет. Родился в
+                Узбекистане, сейчас учусь в Минске на геймдизайнера и параллельно
+                делаю игры на Unity.
+              </p>
+              <p>
+                Начинал с маленьких лабораторных — Pong, карточки на память,
+                раннер про мышь, — а сейчас строю <strong>Medieval Coop</strong>:
+                кооперативный мир на 5×5 км с сотнями взаимосвязанных систем.
               </p>
               <p>
                 Люблю игры, где механика и атмосфера работают вместе: монстр,
@@ -72,7 +77,7 @@ export function About() {
               ))}
             </div>
 
-            <span className="about__sign">— Портфолио / Unity developer</span>
+            <span className="about__sign">— Андрей / Unity developer</span>
           </Reveal>
         </div>
 

@@ -50,8 +50,8 @@ export function Nav() {
     <>
       <header className={`nav ${scrolled ? "is-scrolled" : ""}`}>
         <div className="shell nav__inner">
-          <Link href="/" className="nav__logo" aria-label="Портфолио — на главную">
-            PORTFOLIO<b>.</b>
+          <Link href="/" className="nav__logo" aria-label="Андрей — на главную">
+            АНДРЕЙ<b>.</b>
           </Link>
 
           <nav className="nav__links" aria-label="Основная навигация">
@@ -117,7 +117,7 @@ export function Nav() {
               ))}
             </nav>
             <div className="menu__foot">
-              <span className="mono">PORTFOLIO / UNITY / 2026</span>
+              <span className="mono">АНДРЕЙ / МИНСК / 2026</span>
               <a href="https://github.com/GhostAndrey" target="_blank" rel="noreferrer" className="mono">
                 GitHub ↗
               </a>

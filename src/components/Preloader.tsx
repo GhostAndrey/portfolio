@@ -61,9 +61,9 @@ export function Preloader() {
         >
           <div className="preloader__top">
             <span className="preloader__brand">
-              PORTFOLIO<span>.</span>
+              АНДРЕЙ<span>.</span>
             </span>
-            <span className="mono muted">Game & code portfolio / 2026</span>
+            <span className="mono muted">Game design portfolio / 2026</span>
           </div>
 
           <div className="preloader__center">

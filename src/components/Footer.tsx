@@ -8,8 +8,9 @@ export function Footer() {
         <div className="footer__top">
           <div>
             <p className="footer__blurb">
-              Портфолио разработчика: Unity-игры, Go-сервисы, Telegram Mini App
-              и инструменты автоматизации — от прототипа до рабочего продукта.
+              Андрей — геймдизайнер и Unity-разработчик из Минска. Игры, Go-сервисы,
+              Telegram Mini App и инструменты автоматизации: от прототипа до
+              рабочего продукта.
             </p>
           </div>
 
@@ -45,7 +46,7 @@ export function Footer() {
         </div>
 
         <div className="footer__word" aria-hidden="true">
-          PORTFOLIO
+          АНДРЕЙ
         </div>
 
         <div className="footer__bottom">
