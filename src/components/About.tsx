@@ -1,0 +1,85 @@
+import { Reveal } from "./Reveal";
+import { CountUp } from "./CountUp";
+
+const facts = [
+  ["Движок", "Unity 2021 — 6.3"],
+  ["Язык", "C# / Go / TypeScript"],
+  ["Роль", "Gameplay · Systems"],
+  ["Формат", "PC · Web · Mobile"],
+];
+
+const stats = [
+  { value: "14", label: "игровых проектов" },
+  { value: "276", label: "скриптов в одном мире" },
+  { value: "4", label: "игрока в кооперативе" },
+  { value: "5×5", label: "км непрерывной долины" },
+];
+
+export function About() {
+  return (
+    <section className="section" id="about">
+      <div className="shell">
+        <div className="section-head">
+          <div>
+            <span className="section-head__index mono">01 / Обо мне</span>
+            <h2 className="section-head__title">
+              Не просто
+              <br />
+              прототипы.
+            </h2>
+          </div>
+          <p className="section-head__aside">
+            Каждый проект — это законченная мысль: механика, которая ощущается,
+            мир, который держит внимание, и код, который можно развивать.
+          </p>
+        </div>
+
+        <div className="about__grid">
+          <Reveal className="about__statement">
+            Собираю миры, в которых хочется <em>остаться</em>{" "}
+            <span className="stroke">подольше</span>.
+          </Reveal>
+
+          <Reveal className="about__aside" delay={0.12}>
+            <div className="about__copy">
+              <p>
+                Я Unity-разработчик. Начинал с маленьких лабораторных — Pong,
+                карточки на память, раннер про мышь, — а сейчас строю{" "}
+                <strong>Medieval Coop</strong>: кооперативный мир на 5×5 км с
+                сотнями взаимосвязанных систем.
+              </p>
+              <p>
+                Люблю игры, где механика и атмосфера работают вместе: монстр,
+                у которого есть настроение; топор, который тупеет; свет, который
+                предупреждает раньше звука. Пишу на C#, собираю уровни, настраиваю
+                свет и довожу ощущения до нужного веса.
+              </p>
+            </div>
+
+            <div className="about__facts">
+              {facts.map(([label, value]) => (
+                <div className="about__fact" key={label}>
+                  <span>{label}</span>
+                  <span>{value}</span>
+                </div>
+              ))}
+            </div>
+
+            <span className="about__sign">— Портфолио / Unity developer</span>
+          </Reveal>
+        </div>
+
+        <div className="stats">
+          {stats.map((stat, index) => (
+            <Reveal className="stat" key={stat.label} delay={index * 0.07}>
+              <div className="stat__value">
+                {/^\d+$/.test(stat.value) ? <CountUp value={stat.value} /> : stat.value}
+              </div>
+              <div className="stat__label">{stat.label}</div>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}

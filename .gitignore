@@ -1,0 +1,14 @@
+node_modules/
+.next/
+out/
+build/
+dist/
+.netlify/
+.env
+.env.local
+*.log
+backend/portfolio-api.exe
+backend/data/messages.jsonl
+.DS_Store
+next-env.d.ts
+tsconfig.tsbuildinfo
